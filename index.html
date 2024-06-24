@@ -8,21 +8,45 @@
 </head>
 <body>
     <div class="container">
-       <div class="background">
-     <div class="descr-box">
-        <div class="descr">
-            <p>«Ծնունդդ շնորհավոր, [Անուն]։ 🎊
-                Սկանավորեք QR կոդը հատուկ ծննդյան տեսանյութի համար </p>
-                <i class="you">հենց ձեզ համար: 🎥"</i>
-        </div>
-     </div>
-        <div class="video"><video src="./video.mp4" autoplay muted controls poster="poster.jpg"></video>
-        </div>
-        <div class="footer">
-            <div class="footer-descr">
-                <p> Դուք կարող եք ստեղծել հիշարժան և անհատականացված ծննդյան շնորհավորանք, որը զվարճալի և ինտերակտիվ տարր է հաղորդում տոնակատարությանը:</p>
+        <div class="background">
+            <div class="descr-box">
+                <div class="descr">
+                    <p>«Ծնունդդ շնորհավոր, [Անուն]։ 🎊
+                    Սկանավորեք QR կոդը հատուկ ծննդյան տեսանյութի համար </p>
+                    <i class="you">հենց ձեզ համար: 🎥"</i>
+                </div>
+            </div>
+            <div class="video">
+                <video id="birthday-video" src="./video.mp4" autoplay controls poster="poster.jpg"></video>
+            </div>
+            <div class="footer">
+                <div class="footer-descr">
+                    <p> Դուք կարող եք ստեղծել հիշարժան և անհատականացված ծննդյան շնորհավորանք, որը զվարճալի և ինտերակտիվ տարր է հաղորդում տոնակատարությանը:</p>
+                </div>
             </div>
         </div>
-       </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const video = document.getElementById('birthday-video');
+
+            // Try to play video without sound first
+            video.play();
+
+            // Listen for the first user interaction to enable sound
+            document.body.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    video.play();
+                }
+            });
+
+            // Listen for video play event and ensure sound is on
+            video.addEventListener('play', () => {
+                video.muted = false;
+            });
+        });
+    </script>
 </body>
 </html>
