@@ -28,23 +28,24 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('birthday-video');
 
-            // Try to play video without sound first
+            // Play the video muted first to comply with autoplay policies
+            video.muted = true;
             video.play();
 
-            // Listen for the first user interaction to enable sound
+            // Unmute and play the video after user interaction
             document.body.addEventListener('click', () => {
+                video.muted = false;
+                video.play();
+            }, { once: true }); // Remove event listener after first click
+
+            // Ensure video is unmuted if user clicks on the video controls
+            video.addEventListener('play', () => {
                 if (video.muted) {
                     video.muted = false;
-                    video.play();
                 }
-            });
-
-            // Listen for video play event and ensure sound is on
-            video.addEventListener('play', () => {
-                video.muted = false;
             });
         });
     </script>
